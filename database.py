@@ -5,12 +5,12 @@ username = 'azureuser'
 password = '{CloudComp1234$#@!}'   
 driver= '{ODBC Driver 17 for SQL Server}'
 
-QUERY = "SELECT dbo.[400_households].HSHD_NUM, dbo.[400_transactions].BASKET_NUM FROM dbo.[400_households], dbo.[400_transactions] WHERE dbo.[400_households].HSHD_NUM = dbo.[400_transactions].HSHD_NUM"
 
-with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
-    with conn.cursor() as cursor:
-        cursor.execute(QUERY)
-        row = cursor.fetchone()
-        while row:
-            print (str(row[0]) + " " + str(row[1]))
-            row = cursor.fetchone()
+def main():
+	QUERY = "SELECT dbo.[400_households].HSHD_NUM, dbo.[400_transactions].BASKET_NUM FROM dbo.[400_households], dbo.[400_transactions] WHERE dbo.[400_households].HSHD_NUM = dbo.[400_transactions].HSHD_NUM"
+
+	with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
+		with conn.cursor() as cursor:
+			cursor.execute(QUERY)
+			row = cursor.fetchone()
+			print (str(row[0]) + " " + str(row[1]))
