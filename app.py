@@ -1,3 +1,7 @@
+from pip._internal import main as pipmain
+
+pipmain(['install', 'werkzeug.utils'])
+
 from flask import Flask, request, g, render_template, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
@@ -42,32 +46,11 @@ def startingPage():
             session['fname'] = valid.fname
             session['lname'] = valid.lname
             session['email'] = valid.email
-            return redirect("/info")
+            return redirect("/dashboard")
         else:
             flash('Login failed')
 
     return render_template("login.html")
-
-#upload a file and on upload display word account
-@app.route('/info', methods = ['POST', 'GET'])
-def doWordCount():
-    if(request.method == 'POST'):
-        if('file' not in request.files):
-            flasht('No file detected')
-            return redirect(request.url)
-        file = request.files['file']
-        if(file.filename == ''):
-            flash('Missing name of file')
-            return redirect(request.url)
-        else:
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            file = open(app.config['UPLOAD_FOLDER'] + '/'+ file.filename)
-            words = file.read().split()
-            file.close()
-            flash(len(words))
-
-    return render_template("displayaccount.html")
 
 #create account post request for new sers
 @app.route('/createaccount', methods = ['POST', 'GET'])
@@ -87,6 +70,19 @@ def createAccountPage():
         return redirect("/")
 
     return render_template("createaccount.html")
+
+@app.route('/dashboard', methods = ['POST', 'GET'])
+def displayDashboard():
+	if(request.method == 'POST'):
+		return
+	
+	return render_template("dashboard.html", data=null)
+
+	
+@app.route('/getHouseHolds')
+def v_timestamp():
+	#
+    return render_template("dashboard.html", data=data)
 
 if __name__ == '__main__':
     db.create_all()
