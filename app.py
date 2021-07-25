@@ -5,7 +5,7 @@ import hashlib
 import os, sys
 from datetime import timedelta
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///login.sqlite3'
 app.config['UPLOAD_FOLDER'] = '/home/ubuntu/webapp/userInfo'
 app.secret_key = 'asdasdasdasdasdasdasdasdasdasdasdasdasd'
