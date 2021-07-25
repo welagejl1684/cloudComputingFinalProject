@@ -88,6 +88,23 @@ def createAccountPage():
 
     return render_template("createaccount.html")
 
+@app.route('/dashboard', methods = ['POST', 'GET'])
+def displayDashboard():
+	if(request.method == 'POST'):
+		return
+	return render_template("dashboard.html")
+	
+@app.route('/getHouseHolds')
+def getHouse():
+	#sql query
+	househ = ["asd"]
+	return render_template("dashboard.html", househ=househ)
+	
+@app.route('/getData')
+def getData():
+	#sql query
+    return render_template("dashboard.html", data=data)
+	
 if __name__ == '__main__':
     db.create_all()
     app.run(debug=True)

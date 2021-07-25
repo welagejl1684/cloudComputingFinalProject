@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Glamazon's Data Dashboard</title>
+</head>
+<body>
+	<label for="year">Choose a car:</label>
+
+	<select name="year" id="years">
+	  <option value="2019">2019</option>
+	  <option value="2020">2020</option>
+	</select>
+	
+	<label for="househ">House Holds: </label>
+	<select name="househ" method="GET" action="/getHouseHolds">
+    {% for house in househ %}
+		<option value= "{{house}}" SELECTED>{{house}}</option>"
+    {% endfor %}
+<html>
+<body>
+
+<h2>Basic HTML Table</h2>
+<table style="width:100%">
+  <tr>
+    <th>Househould</th>
+    <th>Lastname</th> 
+    <th>Age</th>
+    <tbody>
+     {% for row in data %}    
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
+</select>
+</body>
