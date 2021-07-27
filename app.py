@@ -77,6 +77,20 @@ def displayDashboard():
 		return
 	return render_template("dashboard.html")
 	
+<<<<<<< HEAD
+=======
+@app.route('/dashboard_results', methods = ['POST', 'GET'])
+def displayDashboardResults():
+    if(request.method == 'POST'):
+        hshd_num = request.form['hshd_num']
+        year = request.form['year']
+        request_data = {
+            'hshd_num': hshd_num,
+            'year': year
+        }
+        return render_template("dashboard_results.html", **request_data)
+
+>>>>>>> 7140a9548954bf16e39838a1b1b1992d1339241d
 @app.route('/getHouseHolds')
 def getHouse():
 	#sql query
