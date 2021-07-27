@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <title>DashboardResults</title>
+    </head>
+    <body>
+        <div class="dashboard">
+            <div class="flex-container">
+                <div class="flex-item header">
+                    <h1>Dashboard Results</h1>
+                </div>
+                <div class="flex-item">
+                    <p>The household number is: {{hshd_num}}</p>
+                </div>
+                <div class="flex-item">
+                    <p>The year is: {{year}}</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

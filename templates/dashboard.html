@@ -1,42 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Welcome to Glamazon's Data Dashboard</title>
-</head>
-<body>
-	<label for="year">Choose a car:</label>
-
-	<select name="year" id="years">
-	  <option value="2019">2019</option>
-	  <option value="2020">2020</option>
-	</select>
-	
-	<label for="househ">House Holds: </label>
-	<select name="househ" method="GET" action="/getHouseHolds">
-    {% for house in househ %}
-		<option value= "{{house}}" SELECTED>{{house}}</option>"
-    {% endfor %}
-<html>
-<body>
-
-<h2>Basic HTML Table</h2>
-<table style="width:100%">
-  <tr>
-    <th>Househould</th>
-    <th>Lastname</th> 
-    <th>Age</th>
-    <tbody>
-     {% for row in data %}    
-            <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-</body>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="dashboard">
+      <form action="/dashboard_results" method="POST">
+        <div class="flex-container">
+          <div class="flex-item header">
+            <h1>Dashboard</h1>
+          </div>
+          <div class="flex-item">
+            <label>Select a year:</label>
+            <select name="year" id="years">
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+            </select>
+          </div>
+          <div class="flex-item">
+            <label>Please enter a house hold number to search for:</label>
+            <input type="text" name="hshd_num" required>
+          </div>
+          <div class="flex-item">
+            <button id="submit" type="submit">Submit Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
-</select>
-</body>
