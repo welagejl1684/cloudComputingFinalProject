@@ -12,6 +12,10 @@
     flex-direction: column;
 }
 
+table {
+    width: 100%;
+}
+
 .flex-container {
     display: flex;
     align-items: center;

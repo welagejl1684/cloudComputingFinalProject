@@ -16,36 +16,37 @@
                 <div class="flex-item">
                     <p>The year is: {{year}}</p>
                 </div>
-			  <h2>Data Pull</h2>
-				<table style="width:100%">
-				  <tr>
-					<th>Commodity</th>
-					<th>Year</th> 
-					<th>Dollar Amount Sold</th>
-					<tbody>
-					 {% for row in data %}    
-							<tr>
-								<td>{{row[0]}}</td>
-								<td>{{row[1]}}</td>
-								<td>{{row[2]}}</td>
-							</tr>
-						{% endfor %}
-					</tbody>
+			  	<h2>Data Pull</h2>
+				<table>
+				  <thead>
+					  <th>Commodity</th>
+					  <th>Year</th>
+					  <th>Dollar Amount Sold</th>
+				  </thead>
+				  <tbody>
+					{% for row in data %}    
+						   <tr>
+							   <td>{{row[0]}}</td>
+							   <td>{{row[1]}}</td>
+							   <td style="padding-left:2em">{{row[2]}}</td>
+						   </tr>
+					   {% endfor %}
+				   </tbody>		
 				</table>
-				<table style="width:100%">
-				  <tr>
-					<th>Year</th> 
-					<th>Total</th>
+				<table>
+					<thead>
+						<th>Year</th>
+						<th>Total</th>
+					</thead>
 					<tbody>
-					 {% for row in dataTot %}    
-							<tr>
-								<td>{{row[0]}}</td>
-								<td>{{row[1]}}</td>
-							</tr>
-						{% endfor %}
-					</tbody>
+						{% for row in dataTot %}    
+							   <tr>
+								   <td>{{row[0]}}</td>
+								   <td>{{row[1]}}</td>
+							   </tr>
+						   {% endfor %}
+					   </tbody>
 				</table>
-
             </div>
         </div>
     </body>
