@@ -91,7 +91,7 @@ def displayDashboardResults():
 			idx[2] = round(idx[2], 2)
 		dataTot = querySel.getTotalSales()
 		for idx in dataTot:
-			idx[2] = round(idx[2], 2)
+			idx[1] = round(idx[1], 2)
 		request_data = {
 			'hshd_num': hshd_num,
 			'year': year,
