@@ -77,8 +77,6 @@ def displayDashboard():
 		return
 	return render_template("dashboard.html")
 	
-<<<<<<< HEAD
-=======
 @app.route('/dashboard_results', methods = ['POST', 'GET'])
 def displayDashboardResults():
     if(request.method == 'POST'):
@@ -90,7 +88,6 @@ def displayDashboardResults():
         }
         return render_template("dashboard_results.html", **request_data)
 
->>>>>>> 7140a9548954bf16e39838a1b1b1992d1339241d
 @app.route('/getHouseHolds')
 def getHouse():
 	#sql query

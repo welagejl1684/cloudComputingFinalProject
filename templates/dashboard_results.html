@@ -16,6 +16,22 @@
                 <div class="flex-item">
                     <p>The year is: {{year}}</p>
                 </div>
+			  <h2>Data Pull</h2>
+				<table style="width:100%">
+				  <tr>
+					<th>Househould</th>
+					<th>Lastname</th> 
+					<th>Age</th>
+					<tbody>
+					 {% for row in data %}    
+							<tr>
+								<td>{{row[0]}}</td>
+								<td>{{row[1]}}</td>
+								<td>{{row[2]}}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
             </div>
         </div>
     </body>

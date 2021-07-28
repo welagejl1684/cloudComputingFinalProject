@@ -22,22 +22,6 @@
             <label>Please enter a house hold number to search for:</label>
             <input type="text" name="hshd_num" required>
           </div>
-		  <h2>Basic HTML Table</h2>
-			<table style="width:100%">
-			  <tr>
-				<th>Househould</th>
-				<th>Lastname</th> 
-				<th>Age</th>
-				<tbody>
-				 {% for row in data %}    
-						<tr>
-							<td>{{row[0]}}</td>
-							<td>{{row[1]}}</td>
-							<td>{{row[2]}}</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
           <div class="flex-item">
             <button id="submit" type="submit">Submit Search</button>
           </div>
@@ -45,5 +29,4 @@
       </form>
     </div>
   </body>
->>>>>>> 7140a9548954bf16e39838a1b1b1992d1339241d
 </html>
