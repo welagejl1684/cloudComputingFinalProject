@@ -23,7 +23,13 @@ ON tra.PRODUCT_NUM = pro.PRODUCT_NUM
 where Year in (2019,2020)
 Group By tra.Year;'''
 
+HOUSEHOLD = ''' '''
+
 class DB():
+	
+	def getDataHouseHold(self, houseHld):
+		
+
 	def getAlcSales(self):
 		val = self.cur.execute(ALCSALES)
 		rows = []

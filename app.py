@@ -83,27 +83,34 @@ def displayDashboard():
 def displayDashboardResults():
 	if(request.method == 'POST'):
 		hshd_num = request.form['hshd_num']
+		
+		dataHouse = querySel.getDataHouseHold(int(hshd_num))
+		
 		year = request.form['year']
+		
 		data = querySel.getAlcSales()
 		dataAuto = querySel.getAutoSales()
+		
 		data = data + dataAuto
 		for idx in data:
 			idx[2] = round(idx[2], 2)
 		dataTot = querySel.getTotalSales()
+		
 		for idx in dataTot:
 			idx[1] = round(idx[1], 2)
+			
 		request_data = {
 			'hshd_num': hshd_num,
 			'year': year,
 			'data': data,
-			'dataTot': dataTot
+			'dataTot': dataTot,
+			'dataHouse': dataHouse
 		}
 	return render_template("dashboard_results.html", **request_data)
 
 @app.route('/getHouseHolds')
 def getHouse():
 	#sql query
-	househ = ["asd"]
 	return render_template("dashboard.html", househ=househ)
 	
 def getData():
