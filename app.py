@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 import hashlib
 import os, sys
+from database import DB
 from datetime import timedelta
 
 app = Flask(__name__, template_folder='templates')
@@ -15,6 +16,7 @@ app.config['UPLOAD_FOLDER'] = '/home/ubuntu/webapp/userInfo'
 app.secret_key = 'asdasdasdasdasdasdasdasdasdasdasdasdasd'
 app.permanent_session_lifetime = timedelta(minutes=5)
 db = SQLAlchemy(app)
+querySel = DB()
 
 db.Model.metadata.reflect(db.engine)
 #database for users and their info
@@ -82,7 +84,7 @@ def displayDashboardResults():
 	if(request.method == 'POST'):
 		hshd_num = request.form['hshd_num']
 		year = request.form['year']
-		data = ['asd','asd','asd']
+		data = querySel.getAlcSales()
 		request_data = {
 			'hshd_num': hshd_num,
 			'year': year,

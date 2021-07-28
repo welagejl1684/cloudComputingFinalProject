@@ -23,11 +23,11 @@ ON tra.PRODUCT_NUM = pro.PRODUCT_NUM
 where Year in (2019,2020)
 Group By tra.Year;'''
 
-class db(self):
+class DB():
 	def getAlcSales(self):
-		self.cur.execute(ALCSALES)
+		vsl = self.cur.execute(ALCSALES)
 		rows = []
-		for idx in cursor:
+		for idx in vsl:
 			rows.append(idx)
 		return rows
 	
