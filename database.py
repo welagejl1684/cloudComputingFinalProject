@@ -5,12 +5,50 @@ username = 'azureuser'
 password = '{CloudComp1234$#@!}'   
 driver= '{ODBC Driver 17 for SQL Server}'
 
+ALCSALES = '''select trim(pro.COMMODITY), tra.Year, SUM(CAST(tra.SPEND as float)) as Spend from dbo.[400_transactions] AS tra
+Inner Join dbo.[400_products] as pro
+ON tra.PRODUCT_NUM = pro.PRODUCT_NUM
+where trim(pro.COMMODITY) = 'ALCOHOL' and tra.Year in (2019,2020)
+GROUP BY pro.COMMODITY, tra.Year'''
 
-def main():
-	QUERY = "SELECT dbo.[400_households].HSHD_NUM, dbo.[400_transactions].BASKET_NUM FROM dbo.[400_households], dbo.[400_transactions] WHERE dbo.[400_households].HSHD_NUM = dbo.[400_transactions].HSHD_NUM"
+AUTOSALES = '''select pro.COMMODITY, tra.Year, SUM(CAST(tra.SPEND as float)) as Spend from dbo.[400_transactions] AS tra
+Inner Join dbo.[400_products] as pro
+ON tra.PRODUCT_NUM = pro.PRODUCT_NUM
+where pro.COMMODITY = 'AUTO' and tra.Year in (2019,2020)
+GROUP BY pro.COMMODITY, tra.Year;'''
 
-	with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
-		with conn.cursor() as cursor:
-			cursor.execute(QUERY)
-			row = cursor.fetchone()
-			print (str(row[0]) + " " + str(row[1]))
+TOTALSALES = '''select tra.Year, SUM(CAST(tra.SPEND as float)) as Spend from dbo.[400_transactions] AS tra
+Inner Join dbo.[400_products] as pro
+ON tra.PRODUCT_NUM = pro.PRODUCT_NUM
+where Year in (2019,2020)
+Group By tra.Year;'''
+
+class db(self):
+	def getAlcSales(self):
+		self.cur.execute(ALCSALES)
+		rows = []
+		for idx in cursor:
+			rows.append(idx)
+		return rows
+	
+	def getAutoSales(self):
+		self.cur.execute(AUTOSALES)
+		rows = []
+		for idx in cursor:
+			rows.append(idx)
+		return rows
+
+	def getTotalSales(self):
+		self.cur.execute(TOTALSALES)
+		rows = []
+		for idx in cursor:
+			rows.append(idx)
+		return rows
+
+	def __init__(self):
+		self.cur = object
+		with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
+			self.cur = conn.cursor()
+			
+			
+			
