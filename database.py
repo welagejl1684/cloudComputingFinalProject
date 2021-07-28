@@ -25,23 +25,23 @@ Group By tra.Year;'''
 
 class DB():
 	def getAlcSales(self):
-		vsl = self.cur.execute(ALCSALES)
+		val = self.cur.execute(ALCSALES)
 		rows = []
-		for idx in vsl:
+		for idx in val:
 			rows.append(idx)
 		return rows
 	
 	def getAutoSales(self):
-		self.cur.execute(AUTOSALES)
+		val = self.cur.execute(AUTOSALES)
 		rows = []
-		for idx in cursor:
+		for idx in val:
 			rows.append(idx)
 		return rows
 
 	def getTotalSales(self):
-		self.cur.execute(TOTALSALES)
+		val = self.cur.execute(TOTALSALES)
 		rows = []
-		for idx in cursor:
+		for idx in val:
 			rows.append(idx)
 		return rows
 
