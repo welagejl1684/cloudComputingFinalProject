@@ -26,9 +26,8 @@ Group By tra.Year;'''
 HOUSEHOLD = ''' '''
 
 class DB():
-	
 	def getDataHouseHold(self, houseHld):
-		
+		return
 
 	def getAlcSales(self):
 		val = self.cur.execute(ALCSALES)
