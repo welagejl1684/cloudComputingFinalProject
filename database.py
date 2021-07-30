@@ -23,11 +23,46 @@ ON tra.PRODUCT_NUM = pro.PRODUCT_NUM
 where Year in (2019,2020)
 Group By tra.Year;'''
 
-HOUSEHOLD = ''' '''
+HOUSEHOLD = '''SELECT distinct(dbo.[400_households].HSHD_NUM), COUNT(dbo.[400_products].COMMODITY) AS Total_Alc_Sales
+FROM ((dbo.[400_households]
+	RIGHT JOIN dbo.[400_transactions] ON dbo.[400_transactions].HSHD_NUM = dbo.[400_households].HSHD_NUM)
+	RIGHT JOIN dbo.[400_products] on dbo.[400_products].PRODUCT_NUM = dbo.[400_transactions].PRODUCT_NUM)
+WHERE dbo.[400_products].COMMODITY = 'ALCOHOL' AND dbo.[400_transactions].YEAR IN ({}) AND dbo.[400_households].HSHD_NUM = {}
+GROUP BY dbo.[400_households].HSHD_NUM
+'''
+
+HSHDNUMYEARALCSALESCOUNT = '''SELECT COUNT(dbo.[400_products].COMMODITY) AS Total_Alc_Sales
+FROM ((dbo.[400_households]
+	RIGHT JOIN dbo.[400_transactions] ON dbo.[400_transactions].HSHD_NUM = dbo.[400_households].HSHD_NUM)
+	RIGHT JOIN dbo.[400_products] on dbo.[400_products].PRODUCT_NUM = dbo.[400_transactions].PRODUCT_NUM)
+WHERE dbo.[400_products].COMMODITY = 'ALCOHOL' AND dbo.[400_transactions].YEAR IN (?) AND dbo.[400_households].HSHD_NUM = ?
+GROUP BY dbo.[400_households].HSHD_NUM
+'''
+
+HSHDNUMYEARALCSALESCOST = '''SELECT SUM(CAST(dbo.[400_transactions].SPEND AS float)) AS Total_Alc_Sales_Cost
+FROM ((dbo.[400_households]
+	RIGHT JOIN dbo.[400_transactions] ON dbo.[400_transactions].HSHD_NUM = dbo.[400_households].HSHD_NUM)
+	RIGHT JOIN dbo.[400_products] on dbo.[400_products].PRODUCT_NUM = dbo.[400_transactions].PRODUCT_NUM)
+WHERE dbo.[400_products].COMMODITY = 'ALCOHOL' AND dbo.[400_transactions].YEAR IN (?) AND dbo.[400_households].HSHD_NUM = ?
+GROUP BY dbo.[400_households].HSHD_NUM
+'''
 
 class DB():
-	def getDataHouseHold(self, houseHld):
-		return
+	def getHouseHoldAlcSalesCount(self, hshd_num, year):
+		self.cur.execute(HSHDNUMYEARALCSALESCOUNT, [year, hshd_num])
+		row = self.cur.fetchone()
+		if row is not None:
+			return row.Total_Alc_Sales
+		else:
+			return None
+	
+	def getHouseHoldAlcSalesCost(self, hshd_num, year):
+		self.cur.execute(HSHDNUMYEARALCSALESCOST, [year, hshd_num])
+		row = self.cur.fetchone()
+		if row is not None:
+			return row.Total_Alc_Sales_Cost
+		else:
+			return None
 
 	def getAlcSales(self):
 		val = self.cur.execute(ALCSALES)
