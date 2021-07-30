@@ -47,6 +47,14 @@ WHERE dbo.[400_products].COMMODITY = 'ALCOHOL' AND dbo.[400_transactions].YEAR I
 GROUP BY dbo.[400_households].HSHD_NUM
 '''
 
+HSHDNUMCHILDRENALCSALECOST = '''SELECT distinct(dbo.[400_households].CHILDREN) as Num_Children, SUM(CAST(dbo.[400_transactions].SPEND AS float)) AS Total_Alc_Sales_Cost
+FROM ((dbo.[400_households]
+	RIGHT JOIN dbo.[400_transactions] ON dbo.[400_transactions].HSHD_NUM = dbo.[400_households].HSHD_NUM)
+	RIGHT JOIN dbo.[400_products] on dbo.[400_products].PRODUCT_NUM = dbo.[400_transactions].PRODUCT_NUM)
+WHERE dbo.[400_products].COMMODITY = 'ALCOHOL' AND dbo.[400_households].CHILDREN != 'null' AND dbo.[400_transactions].YEAR IN (?)
+GROUP BY dbo.[400_households].CHILDREN;
+'''
+
 class DB():
 	def getHouseHoldAlcSalesCount(self, hshd_num, year):
 		self.cur.execute(HSHDNUMYEARALCSALESCOUNT, [year, hshd_num])
@@ -56,6 +64,16 @@ class DB():
 		else:
 			return None
 	
+	def getHouseHoldChildrenAlcSaleCost(self, year):
+		# This method returns 3 rows with 2 columns. Column 1 represents the number of children in a household (1, 2, 3+)
+		# Column 2 represents the sum of the cost of alcohol sales for households with some number of children.
+		# The year is passed as a parameter.
+		val = self.cur.execute(HSHDNUMCHILDRENALCSALECOST, [year])
+		rows = []
+		for idx in val:
+			rows.append(idx)
+		return rows
+
 	def getHouseHoldAlcSalesCost(self, hshd_num, year):
 		self.cur.execute(HSHDNUMYEARALCSALESCOST, [year, hshd_num])
 		row = self.cur.fetchone()
