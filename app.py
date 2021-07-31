@@ -98,7 +98,6 @@ def displayDashboardResults():
             hshdNumAlcSalesCash = "This household did not spend any money on alcohol during this year!"
         
 
-
         data = querySel.getAlcSales()
         dataAuto = querySel.getAutoSales()
         data = data + dataAuto
