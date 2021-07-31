@@ -23,11 +23,18 @@ ON tra.PRODUCT_NUM = pro.PRODUCT_NUM
 where Year in (2019,2020)
 Group By tra.Year;'''
 
-HOUSEHOLD = ''' '''
+HOUSEHOLD = '''
+select dbo.[400_transactions].HSHD_NUM, dbo.[400_transactions].BASKET_NUM, dbo.[400_transactions].PRODUCT_NUM, dbo.[400_transactions].PURCHASE, dbo.[400_products].COMMODITY, dbo.[400_products].DEPARTMENT
+from dbo.[400_transactions]
+Inner Join dbo.[400_products] ON dbo.[400_transactions].PRODUCT_NUM = dbo.[400_products].PRODUCT_NUM;'''
 
 class DB():
 	def getDataHouseHold(self, houseHld):
-		return
+		val = self.cur.execute(HOUSEHOLD)
+		rows = []
+		for idx in val:
+			rows.append(idx)
+		return rows
 
 	def getAlcSales(self):
 		val = self.cur.execute(ALCSALES)
