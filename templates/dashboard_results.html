@@ -11,20 +11,24 @@
                     <h1>Dashboard Results</h1>
                 </div>
                 <div class="flex-item">
-                    <p>The household number is: {{hshd_num}}</p>
+                    <p>The household number is {{hshd_num}} and the year is {{year}}.</p>
                 </div>
-                <div class="flex-item">
-                    <p>The year is: {{year}}</p>
-                </div>
-			  <h2>Data Pull for {{hshd_num}}</h2>
-			  <table style="width:100%">
-				  <tr>
-					<th>Basket Number</th>
-					<th>Product Number</th> 
-					<th>Department</th>
-					<th>Commodity</th>
+				<div class="flex-item">
+					<p>{{hshdNumAlcSalesCount}}</p>
+				</div>
+				<div class="flex-item">
+					<p>{{hshdNumAlcSalesCash}}</p>
+				</div>
+			  <h2>Data Pull for </h2>
+				<table>
+					<thead>
+						<th>Basket Number</th>
+						<th>Product Number</th> 
+						<th>Department</th>
+						<th>Commodity</th>
+					</thead>
 					<tbody>
-					 {% for row in houseData %}    
+						{% for row in houseData %}    
 							<tr>
 								<td>{{row[0]}}</td>
 								<td>{{row[1]}}</td>
@@ -34,13 +38,14 @@
 						{% endfor %}
 					</tbody>
 				</table>
-				<table style="width:100%">
-				  <tr>
-					<th>Commodity</th>
-					<th>Year</th> 
-					<th>Dollar Amount Sold</th>
+				<table>
+					<thead>
+						<th>Commodity</th>
+						<th>Year</th> 
+						<th>Dollar Amount Sold</th>
+					</thead>
 					<tbody>
-					 {% for row in data %}    
+						{% for row in data %}    
 							<tr>
 								<td>{{row[0]}}</td>
 								<td>{{row[1]}}</td>
@@ -49,10 +54,11 @@
 						{% endfor %}
 					</tbody>
 				</table>
-				<table style="width:100%">
-				  <tr>
-					<th>Year</th> 
-					<th>Total Sales for Year</th>
+				<table>
+					<thead>
+						<th>Year</th> 
+						<th>Total Sales for Year</th>
+					</thead>
 					<tbody>
 						{% for row in dataTot %}    
 							   <tr>
@@ -60,7 +66,7 @@
 								   <td>{{row[1]}}</td>
 							   </tr>
 						   {% endfor %}
-					   </tbody>
+					</tbody>
 				</table>
             </div>
         </div>

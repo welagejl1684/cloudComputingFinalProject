@@ -16,6 +16,10 @@ table {
     width: 100%;
 }
 
+td {
+    text-align: center;
+}
+
 .flex-container {
     display: flex;
     align-items: center;
