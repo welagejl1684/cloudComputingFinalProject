@@ -59,4 +59,4 @@ jobs:
         with:
           app-name: 'CloudComputingProjectGlamazon'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_cccba7ef03a94405a7469eba5a0fdaf0 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_085453130f2946ae909f0c4ce6534267 }}
