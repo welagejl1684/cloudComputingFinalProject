@@ -28,8 +28,7 @@ FROM ((dbo.[400_households]
 	RIGHT JOIN dbo.[400_transactions] ON dbo.[400_transactions].HSHD_NUM = dbo.[400_households].HSHD_NUM)
 	RIGHT JOIN dbo.[400_products] on dbo.[400_products].PRODUCT_NUM = dbo.[400_transactions].PRODUCT_NUM)
 WHERE dbo.[400_products].COMMODITY = 'ALCOHOL' AND dbo.[400_transactions].YEAR IN ({}) AND dbo.[400_households].HSHD_NUM = {}
-GROUP BY dbo.[400_households].HSHD_NUM
-'''
+GROUP BY dbo.[400_households].HSHD_NUM'''
 
 HSHDNUMYEARALCSALESCOUNT = '''SELECT COUNT(dbo.[400_products].COMMODITY) AS Total_Alc_Sales
 FROM ((dbo.[400_households]

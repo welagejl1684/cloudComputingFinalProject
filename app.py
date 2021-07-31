@@ -1,6 +1,3 @@
-from pip._internal import main as pipmain
-
-pipmain(['install', 'werkzeug.utils'])
 
 from flask import Flask, request, g, render_template, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
