@@ -23,6 +23,10 @@ table {
     background-color: white;
 }
 
+.results {
+    max-width: 600px;
+}
+
 .data-pull-table {
     overflow: scroll;
     max-height: 300px;
