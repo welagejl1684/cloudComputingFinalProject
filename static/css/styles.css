@@ -29,6 +29,11 @@ table {
     display: block;
 }
 
+.topic {
+    display: flex;
+    max-width: 500px
+}
+
 td {
     text-align: center;
     border-width: 1px;
