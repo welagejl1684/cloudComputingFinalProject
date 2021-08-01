@@ -132,14 +132,9 @@ def displayDashboardResults():
         }
     return render_template("dashboard_results.html", **request_data)
 
-@app.route('/getHouseHolds')
-def getHouse():
-	#sql query
-	return render_template("dashboard.html", househ=househ)
-	
-def getData():
-	#sql query
-    return render_template("dashboard.html", data=data)
+@app.route('/getAnswers')
+def getAnswers():
+    return render_template("results.html")
 	
 if __name__ == '__main__':
     db.create_all()
