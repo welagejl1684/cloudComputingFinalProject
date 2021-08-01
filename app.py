@@ -80,7 +80,7 @@ def displayDashboard():
 def displayDashboardResults():
     if(request.method == 'POST'):
     # The hshd_num and year are passed as parameters from the previous page.
-        hshd_num = request.form['hshd_num']
+        hshd_num = int(float(request.form['hshd_num']))
         year = request.form['year']
 
     # The count of alcohol sales are gotten for this specific hshd and year
