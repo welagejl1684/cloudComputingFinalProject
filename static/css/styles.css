@@ -23,6 +23,12 @@ table {
     background-color: white;
 }
 
+.data-pull-table {
+    overflow-y: scroll;
+    height: 300px;
+    display: block;
+}
+
 td {
     text-align: center;
     border-width: 1px;
