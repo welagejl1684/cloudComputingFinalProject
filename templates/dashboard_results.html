@@ -9,6 +9,7 @@
             <div class="flex-container">
                 <div class="flex-item header">
                     <h1>Dashboard Results</h1>
+					<h2>Data Pull for {{hshd_num}} </h2>
                 </div>
                 <div class="flex-item">
                     <p>The household number is {{hshd_num}} and the year is {{year}}.</p>
@@ -19,7 +20,6 @@
 				<div class="flex-item">
 					<p>{{hshdNumAlcSalesCash}}</p>
 				</div>
-			  <h2>Data Pull for {{hshd_num}} </h2>
 				<table class="data-pull-table">
 					<thead>
 						<th>Basket Number</th>
@@ -38,6 +38,9 @@
 						{% endfor %}
 					</tbody>
 				</table>
+				<div class="flex-item header">
+					<h2>Overall Data</h2>
+				</div>
 				<table>
 					<thead>
 						<th>Commodity</th>
