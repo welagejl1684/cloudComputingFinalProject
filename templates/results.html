@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <title>Results</title>
+    </head>
+    <body>
+        <div class="dashboard">
+            <div class="flex-container">
+                <div class="flex-item header">
+                    <h1>Overall Results</h1>
+                </div>
+                <div class="flex-item">
+                    <h2>Retail Question 1</h2>
+                    <p>
+                        Based on the data provided in assignment, 8451_The_Complete_Journey_2_Sample.zip,
+                        retail business seem to have been affected by Covid-19 pandemic. 
+                        We predicted that sales would decrease in 2020 in comparison with 2019 due to high unemployment 
+                        rate in the US and across the globe. 
+                        While exploring the data, the result we found was that net sales drastically 
+                        decreased in 2020 compare to 2019. Also due to the lockdown in the US, there were several 
+                        commodities that were not needed for daily use, which mean the sales would definitely be 
+                        impacted. With the pandemic ending, we expect that more people would go out and the sales of 
+                        alcohol will increase.
+                    </p>
+                </div>
+                <div class="flex-item">
+                    <h2>Retail Question 2</h2>
+                    <p>
+                        Among several categories provided in the dataset such as family size, income, 
+                        presence of children, etc., we specifically used SQL queries on commodities such as 
+                        alcohol and auto, and on the household size with income range to test our prediction. 
+                        Due to unemployment, we believe that sales of alcohol decreased in 2020 compare to 2019. 
+                        In addition, due to work from home set up with most companies in the US, the need for auto 
+                        equipment decreased implying decreased sales in that commodity as well. We also did queries 
+                        on net sales in all commodities in 2019 and 2020 and found similar result, which is 
+                        decreased in the total sales in 2020. We did query on the alcohol sales by the number of 
+                        child presence and income range by year, and found that the income range between 50K-74K 
+                        spent more on alcohol in 2019/2020 compared to other income ranges in 2019/2020, and alcohol 
+                        sales of household with 1 child is higher that the alcohol sales of household with more than 
+                        1 child in both years. Overall natural factor – Covid-19 seem to have affected customer 
+                        engagement in retail industry.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
