@@ -24,7 +24,7 @@ table {
 }
 
 .data-pull-table {
-    overflow-y: scroll;
+    overflow: scroll;
     height: 300px;
     display: block;
 }
