@@ -63,7 +63,23 @@ GROUP BY dbo.[400_households].INCOME_RANGE
 ORDER BY Total_Alc_Sales_Cost DESC;
 '''
 
+HSHDDATA = '''select dbo.[400_transactions].HSHD_NUM, dbo.[400_transactions].BASKET_NUM, dbo.[400_transactions].PRODUCT_NUM, dbo.[400_transactions].PURCHASE, dbo.[400_products].COMMODITY, dbo.[400_products].DEPARTMENT
+from dbo.[400_transactions]
+Inner Join dbo.[400_products] ON dbo.[400_transactions].PRODUCT_NUM = dbo.[400_products].PRODUCT_NUM
+where dbo.[400_transactions].HSHD_NUM = (?) AND dbo.[400_transactions].YEAR IN (?);
+'''
+
 class DB():
+	def getHouseHoldData(self, hshd_num, year):
+		vals = self.cur.execute(HSHDDATA, [hshd_num, year])
+		if vals is not None:
+			rows = []
+			for idx in vals:
+				rows.append(idx)
+			return rows
+		else:
+			return None
+			
 	def getHouseHoldAlcSalesCount(self, hshd_num, year):
 		self.cur.execute(HSHDNUMYEARALCSALESCOUNT, [year, hshd_num])
 		row = self.cur.fetchone()

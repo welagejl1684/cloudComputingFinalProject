@@ -79,54 +79,56 @@ def displayDashboard():
 @app.route('/dashboard_results', methods = ['POST', 'GET'])
 def displayDashboardResults():
     if(request.method == 'POST'):
-        # The hshd_num and year are passed as parameters from the previous page.
+    # The hshd_num and year are passed as parameters from the previous page.
         hshd_num = request.form['hshd_num']
         year = request.form['year']
 
-        # The count of alcohol sales are gotten for this specific hshd and year
+    # The count of alcohol sales are gotten for this specific hshd and year
         hshdNumAlcSalesCount = querySel.getHouseHoldAlcSalesCount(int(hshd_num), year)
         if hshdNumAlcSalesCount is not None:
             hshdNumAlcSalesCount = "This household purchased alcohol {} times during this year.".format(hshdNumAlcSalesCount)
         else:
             hshdNumAlcSalesCount = "This household did not purchase alcohol at all during this year!"
-        
-        # The sale of alcohol is gotten for this specific hshd and year
+
+    # The sale of alcohol is gotten for this specific hshd and year
         hshdNumAlcSalesCash = querySel.getHouseHoldAlcSalesCost(int(hshd_num), year)
         if hshdNumAlcSalesCash is not None:
             hshdNumAlcSalesCash = "This household spent ${} on alcohol during this year.".format(round(hshdNumAlcSalesCash, 2))
         else:
             hshdNumAlcSalesCash = "This household did not spend any money on alcohol during this year!"
-        
-        # The sale of alcohol for hshds with varying amount of children are gotten
+
+    # The sale of alcohol for hshds with varying amount of children are gotten
         hshdNumChildrenAlcSaleCosts = querySel.getHouseHoldChildrenAlcSaleCost(int(year))
         for idx in hshdNumChildrenAlcSaleCosts:
             idx[1] = round(idx[1], 2)
 
-        # The sale of alcohol for hshds with different income ranges are gotten
+    # The sale of alcohol for hshds with different income ranges are gotten
         hshdIncomeRangeAlcSaleCosts = querySel.getHouseHoldIncomeRangeAlcSaleCost(int(year))
         for idx in hshdIncomeRangeAlcSaleCosts:
             idx[1] = round(idx[1], 2)
 
+        hshdData = querySel.getHouseHoldData(int(hshd_num), year)
+
         data = querySel.getAlcSales()
         dataAuto = querySel.getAutoSales()
         data = data + dataAuto
-
         for idx in data:
             idx[2] = round(idx[2], 2)
+        
         dataTot = querySel.getTotalSales()
-
         for idx in dataTot:
             idx[1] = round(idx[1], 2)
-            
+
         request_data = {
-            'hshd_num': hshd_num,
-            'year': year,
-            'data': data,
-            'dataTot': dataTot,
-            'hshdNumAlcSalesCount': hshdNumAlcSalesCount,
-            'hshdNumAlcSalesCash': hshdNumAlcSalesCash,
-            'hshdNumChildrenAlcSaleCosts': hshdNumChildrenAlcSaleCosts,
-            'hshdIncomeRangeAlcSaleCosts': hshdIncomeRangeAlcSaleCosts
+        'hshd_num': hshd_num,
+        'year': year,
+        'data': data,
+        'dataTot': dataTot,
+        'houseData': hshdData,
+        'hshdNumAlcSalesCount': hshdNumAlcSalesCount,
+        'hshdNumAlcSalesCash': hshdNumAlcSalesCash,
+        'hshdNumChildrenAlcSaleCosts': hshdNumChildrenAlcSaleCosts,
+        'hshdIncomeRangeAlcSaleCosts': hshdIncomeRangeAlcSaleCosts
         }
     return render_template("dashboard_results.html", **request_data)
 
